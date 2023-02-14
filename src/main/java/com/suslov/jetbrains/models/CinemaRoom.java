@@ -9,8 +9,8 @@ import static com.suslov.jetbrains.CinemaManager.MAX_SIZE_SCREEN_ROOM;
  * @author Mikhail Suslov
  */
 public class CinemaRoom {
-    private static final char EMPTY_SEAT = 'S';
-    private static final char PURCHASED_SEAT = 'B';
+    protected static final char EMPTY_SEAT = 'S';
+    protected static final char PURCHASED_SEAT = 'B';
 
     private final Scanner console;
     private int rowsNumber;
@@ -22,7 +22,6 @@ public class CinemaRoom {
 
     public CinemaRoom(Scanner console) {
         this.console = console;
-        inputCinemaRoomSize();
     }
 
     public int getRowsNumber() {
@@ -41,9 +40,21 @@ public class CinemaRoom {
         return rowLastBooking;
     }
 
-    private void inputCinemaRoomSize() {
-        rowsNumber = enterRowsNumber(console, "Enter the number of rows:", MAX_SIZE_SCREEN_ROOM);
-        seatsNumber = enterSeatsNumber(console, "Enter the number of seats in each row:", MAX_SIZE_SCREEN_ROOM);
+    public int getSeatLastBooking() {
+        return seatLastBooking;
+    }
+
+    public char[][] getRoomScheme() {
+        return roomScheme;
+    }
+
+    public void initialize() {
+        inputCinemaRoomSize();
+    }
+
+    protected void inputCinemaRoomSize() {
+        rowsNumber = enterRowsNumber("Enter the number of rows:", MAX_SIZE_SCREEN_ROOM);
+        seatsNumber = enterSeatsNumber("Enter the number of seats in each row:", MAX_SIZE_SCREEN_ROOM);
         totalSeats = rowsNumber * seatsNumber;
 
         roomScheme = new char[rowsNumber][seatsNumber];
@@ -52,31 +63,31 @@ public class CinemaRoom {
         }
     }
 
-    private int enterRowsNumber(Scanner scanner, String message, int maxValue) {
+    protected int enterRowsNumber(String message, int maxValue) {
         int rowNumber = 0;
         do {
             System.out.println(message);
-            if (scanner.hasNextInt()) {
-                rowNumber = scanner.nextInt();
+            if (console.hasNextInt()) {
+                rowNumber = console.nextInt();
             }
         } while (!checkInputNumber(rowNumber, maxValue));
 
         return rowNumber;
     }
 
-    private int enterSeatsNumber(Scanner scanner, String message, int maxValue) {
+    protected int enterSeatsNumber(String message, int maxValue) {
         int seatNumber = 0;
         do {
             System.out.println(message);
-            if (scanner.hasNextInt()) {
-                seatNumber = scanner.nextInt();
+            if (console.hasNextInt()) {
+                seatNumber = console.nextInt();
             }
         } while (!checkInputNumber(seatNumber, maxValue));
 
         return seatNumber;
     }
 
-    private boolean checkInputNumber(int seatNumber, int maxValue) {
+    protected boolean checkInputNumber(int seatNumber, int maxValue) {
         if (seatNumber <= 0 || seatNumber > maxValue) {
             System.out.println("Wrong input!");
             return false;
@@ -87,13 +98,13 @@ public class CinemaRoom {
 
     public void chooseSeatCoordinates() {
         do {
-            rowLastBooking = enterRowsNumber(console, "Enter a row number:", rowsNumber);
-            seatLastBooking = enterSeatsNumber(console, "Enter a seat number in that row:", seatsNumber);
+            rowLastBooking = enterRowsNumber("Enter a row number:", rowsNumber);
+            seatLastBooking = enterSeatsNumber("Enter a seat number in that row:", seatsNumber);
         } while (!checkTicketForPurchase(rowLastBooking, seatLastBooking));
     }
 
-    private boolean checkTicketForPurchase(int row, int seat) {
-        if (EMPTY_SEAT == roomScheme[row - 1][seat - 1]) {
+    protected boolean checkTicketForPurchase(int row, int seat) {
+        if (EMPTY_SEAT == roomScheme[row][seat]) {
             return true;
         } else {
             System.out.println("That ticket has already been purchased!");
@@ -121,6 +132,6 @@ public class CinemaRoom {
     }
 
     public void bookTheChosenSeat() {
-        roomScheme[rowLastBooking - 1][seatLastBooking - 1] = PURCHASED_SEAT;
+        roomScheme[rowLastBooking][seatLastBooking] = PURCHASED_SEAT;
     }
 }

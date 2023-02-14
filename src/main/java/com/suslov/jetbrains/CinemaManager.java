@@ -31,6 +31,8 @@ public class CinemaManager {
         this.scanner = new Scanner(System.in);
         this.cinemaRoom = new CinemaRoom(scanner);
         this.ticketManager = new TicketManager(cinemaRoom);
+
+        cinemaRoom.initialize();
     }
 
     public void initializeUserMenu() {
