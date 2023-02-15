@@ -14,19 +14,27 @@ public class TicketManager {
         this.cinemaRoom = cinemaRoom;
     }
 
+    public int getCurrentIncome() {
+        return currentIncome;
+    }
+
+    public int getPurchasedTickets() {
+        return purchasedTickets;
+    }
+
     public void buyTicketForChosenSeat() {
         purchasedTickets++;
         cinemaRoom.bookTheChosenSeat();
         outputTicketPrice(cinemaRoom.getRowLastBooking());
     }
 
-    public void outputTicketPrice(int row) {
+    protected void outputTicketPrice(int row) {
         int price = getTicketPrice(row);
         currentIncome += price;
         System.out.printf("Ticket price: $%d\n", price);
     }
 
-    private int getTicketPrice(int row) {
+    protected int getTicketPrice(int row) {
         if (cinemaRoom.getTotalSeats() < AVERAGE_ROOM_SIZE) {
             return TICKET_PRICE_FRONT_HALF;
         } else {
@@ -41,11 +49,11 @@ public class TicketManager {
         System.out.printf("Total income: $%d\n", calculateProfitFromSoldTicket());
     }
 
-    private double calculatePercentageOfPurchasedTickets() {
+    protected double calculatePercentageOfPurchasedTickets() {
         return 100.0 * purchasedTickets / cinemaRoom.getTotalSeats();
     }
 
-    private int calculateProfitFromSoldTicket() {
+    protected int calculateProfitFromSoldTicket() {
         if (cinemaRoom.getTotalSeats() < AVERAGE_ROOM_SIZE) {
             return cinemaRoom.getTotalSeats() * TICKET_PRICE_FRONT_HALF;
         } else {

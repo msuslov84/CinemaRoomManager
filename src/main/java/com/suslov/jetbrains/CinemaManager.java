@@ -28,7 +28,11 @@ public class CinemaManager {
     }
 
     public CinemaManager() {
-        this.scanner = new Scanner(System.in);
+        this(new Scanner(System.in));
+    }
+
+    public CinemaManager(Scanner scanner) {
+        this.scanner = scanner;
         this.cinemaRoom = new CinemaRoom(scanner);
         this.ticketManager = new TicketManager(cinemaRoom);
 
@@ -40,7 +44,7 @@ public class CinemaManager {
         processSelectedAction(actionNumber);
     }
 
-    private int selectAction() {
+    protected int selectAction() {
         int index = -1;
         do {
             System.out.println(SELECT_MENU);
@@ -72,7 +76,7 @@ public class CinemaManager {
         }
     }
 
-    private void closeManager() {
+    public void closeManager() {
         System.out.println("Manager is closed.");
         scanner.close();
     }

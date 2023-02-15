@@ -1,5 +1,6 @@
 package com.suslov.jetbrains.models;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +17,11 @@ import static com.suslov.jetbrains.models.CinemaRoom.PURCHASED_SEAT;
  */
 public class CinemaRoomTest {
     private CinemaRoom cinemaRoom;
+    private Scanner console;
 
     @Before
     public void setUp() {
-        Scanner console = new Scanner("6 6 2 5");
+        console = new Scanner("6 6 2 5");
         cinemaRoom = new CinemaRoom(console);
     }
 
@@ -117,5 +119,10 @@ public class CinemaRoomTest {
         cinemaRoom.chooseSeatCoordinates();
         cinemaRoom.bookTheChosenSeat();
         Assert.assertNotEquals(cinemaRoom.getRoomScheme()[1][4], PURCHASED_SEAT);
+    }
+
+    @After
+    public void tearDown() {
+        console.close();
     }
 }
