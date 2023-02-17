@@ -12,5 +12,5 @@ I've used JUnit library for checking and controlling correct perfomance.
 ### Launch example:
 * java -jar CinemaRoomManager.jar
 ### Technical information:
-* Версия Java 8 (Oracle OpenJDK version 1.8.0_311)
-* Библиотека JUnit 4.13.2
+* Java 8 (Oracle OpenJDK version 1.8.0_311)
+* Library JUnit 4.13.2
