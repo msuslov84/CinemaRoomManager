@@ -13,4 +13,4 @@ I've used JUnit library for checking and controlling correct perfomance.
 * java -jar CinemaRoomManager.jar
 ### Technical information:
 * Java 8 (Oracle OpenJDK version 1.8.0_311)
-* Library JUnit 4.13.2
+* JUnit 4.13.2
