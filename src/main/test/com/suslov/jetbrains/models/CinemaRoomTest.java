@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.suslov.jetbrains.CinemaManager.MAX_SIZE_SCREEN_ROOM;
+import static com.suslov.jetbrains.models.CinemaRoom.MAX_SIZE_SCREEN_ROOM;
 import static com.suslov.jetbrains.models.CinemaRoom.EMPTY_SEAT;
 import static com.suslov.jetbrains.models.CinemaRoom.PURCHASED_SEAT;
 

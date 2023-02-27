@@ -3,14 +3,14 @@ package com.suslov.jetbrains.models;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static com.suslov.jetbrains.CinemaManager.MAX_SIZE_SCREEN_ROOM;
-
 /**
  * @author Mikhail Suslov
  */
 public class CinemaRoom {
-    protected static final char EMPTY_SEAT = 'S';
-    protected static final char PURCHASED_SEAT = 'B';
+    static final int MAX_SIZE_SCREEN_ROOM = 9;
+    static final int AVERAGE_ROOM_SIZE = 60;
+    static final char EMPTY_SEAT = 'S';
+    static final char PURCHASED_SEAT = 'B';
 
     private final Scanner console;
     private int rowsNumber;
@@ -52,7 +52,7 @@ public class CinemaRoom {
         inputCinemaRoomSize();
     }
 
-    protected void inputCinemaRoomSize() {
+    void inputCinemaRoomSize() {
         rowsNumber = enterRowsNumber("Enter the number of rows:", MAX_SIZE_SCREEN_ROOM);
         seatsNumber = enterSeatsNumber("Enter the number of seats in each row:", MAX_SIZE_SCREEN_ROOM);
         totalSeats = rowsNumber * seatsNumber;
@@ -63,7 +63,7 @@ public class CinemaRoom {
         }
     }
 
-    protected int enterRowsNumber(String message, int maxValue) {
+    int enterRowsNumber(String message, int maxValue) {
         int rowNumber = 0;
         do {
             System.out.println(message);
@@ -75,7 +75,7 @@ public class CinemaRoom {
         return rowNumber;
     }
 
-    protected int enterSeatsNumber(String message, int maxValue) {
+    int enterSeatsNumber(String message, int maxValue) {
         int seatNumber = 0;
         do {
             System.out.println(message);
@@ -87,7 +87,7 @@ public class CinemaRoom {
         return seatNumber;
     }
 
-    protected boolean checkInputNumber(int seatNumber, int maxValue) {
+    boolean checkInputNumber(int seatNumber, int maxValue) {
         if (seatNumber <= 0 || seatNumber > maxValue) {
             System.out.println("Wrong input!");
             return false;
@@ -103,7 +103,7 @@ public class CinemaRoom {
         } while (!checkTicketForPurchase(rowLastBooking, seatLastBooking));
     }
 
-    protected boolean checkTicketForPurchase(int row, int seat) {
+    boolean checkTicketForPurchase(int row, int seat) {
         if (EMPTY_SEAT == roomScheme[row][seat]) {
             return true;
         } else {

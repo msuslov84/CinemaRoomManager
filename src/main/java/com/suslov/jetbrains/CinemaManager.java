@@ -10,17 +10,12 @@ import java.util.Scanner;
  */
 
 public class CinemaManager {
-    public static final int MAX_SIZE_SCREEN_ROOM = 9;
-    public static final int TICKET_PRICE_FRONT_HALF = 10;
-    public static final int TICKET_PRICE_BACK_HALF = 8;
-    public static final int AVERAGE_ROOM_SIZE = 60;
-
     private static final String SELECT_MENU = "\n1. Show the seats\n2. Buy a ticket\n3. Statistics\n0. Exit";
+    private static final String CLOSE_APP = "Manager is closed.";
 
     private final Scanner scanner;
     private final CinemaRoom cinemaRoom;
     private final TicketManager ticketManager;
-
 
     public static void main(String[] args) {
         CinemaManager cinemaManager = new CinemaManager();
@@ -44,7 +39,7 @@ public class CinemaManager {
         processSelectedAction(actionNumber);
     }
 
-    protected int selectAction() {
+    int selectAction() {
         int index = -1;
         do {
             System.out.println(SELECT_MENU);
@@ -56,7 +51,7 @@ public class CinemaManager {
         return index;
     }
 
-    public void processSelectedAction(int actionNumber) {
+    void processSelectedAction(int actionNumber) {
         switch (actionNumber) {
             case 1:
                 cinemaRoom.representCinemaRoom();
@@ -77,7 +72,7 @@ public class CinemaManager {
     }
 
     public void closeManager() {
-        System.out.println("Manager is closed.");
+        System.out.println(CLOSE_APP);
         scanner.close();
     }
 }

@@ -1,11 +1,14 @@
 package com.suslov.jetbrains.models;
 
-import static com.suslov.jetbrains.CinemaManager.*;
+import static com.suslov.jetbrains.models.CinemaRoom.AVERAGE_ROOM_SIZE;
 
 /**
  * @author Mikhail Suslov
  */
 public class TicketManager {
+    static final int TICKET_PRICE_FRONT_HALF = 10;
+    static final int TICKET_PRICE_BACK_HALF = 8;
+
     private final CinemaRoom cinemaRoom;
     private int currentIncome;
     private int purchasedTickets;
@@ -28,13 +31,13 @@ public class TicketManager {
         outputTicketPrice(cinemaRoom.getRowLastBooking());
     }
 
-    protected void outputTicketPrice(int row) {
+    void outputTicketPrice(int row) {
         int price = getTicketPrice(row);
         currentIncome += price;
         System.out.printf("Ticket price: $%d\n", price);
     }
 
-    protected int getTicketPrice(int row) {
+    int getTicketPrice(int row) {
         if (cinemaRoom.getTotalSeats() < AVERAGE_ROOM_SIZE) {
             return TICKET_PRICE_FRONT_HALF;
         } else {
@@ -49,11 +52,11 @@ public class TicketManager {
         System.out.printf("Total income: $%d\n", calculateProfitFromSoldTicket());
     }
 
-    protected double calculatePercentageOfPurchasedTickets() {
+    double calculatePercentageOfPurchasedTickets() {
         return 100.0 * purchasedTickets / cinemaRoom.getTotalSeats();
     }
 
-    protected int calculateProfitFromSoldTicket() {
+    int calculateProfitFromSoldTicket() {
         if (cinemaRoom.getTotalSeats() < AVERAGE_ROOM_SIZE) {
             return cinemaRoom.getTotalSeats() * TICKET_PRICE_FRONT_HALF;
         } else {

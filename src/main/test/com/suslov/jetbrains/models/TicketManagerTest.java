@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import java.util.Scanner;
 
-import static com.suslov.jetbrains.CinemaManager.TICKET_PRICE_BACK_HALF;
-import static com.suslov.jetbrains.CinemaManager.TICKET_PRICE_FRONT_HALF;
+import static com.suslov.jetbrains.models.TicketManager.TICKET_PRICE_BACK_HALF;
+import static com.suslov.jetbrains.models.TicketManager.TICKET_PRICE_FRONT_HALF;
 
 /**
  * @author Mikhail Suslov
