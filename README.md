@@ -7,7 +7,10 @@ helps manage a cinema theatre: sell tickets, check available seats, see sales st
 more.
 ### Description:
 This small project from JetBrains Academy is a good opportunity to work with input and output 
-in Java. I've dealt with arrays and functions as well as loops and conditional statements.
+in Java. I've dealt with arrays and functions as well as loops and conditional statements. Also
+I've used JUnit library for checking and controlling correct perfomance.
+### Launch example:
+* java -jar CinemaRoomManager.jar
 ### Technical information:
-* Версия Java 8 (Oracle OpenJDK version 1.8.0_311)
-* Библиотека JUnit 4.13.2
+* Java 8 (Oracle OpenJDK version 1.8.0_311)
+* JUnit 4.13.2
